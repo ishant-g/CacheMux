@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=360">
+  <title>CacheMux</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header id="header">
+    <div class="header-brand">
+      <span class="header-icon">⬡</span>
+      <h1>CacheMux</h1>
+      <span class="header-version">v1.0</span>
+    </div>
+    <div class="header-domain" id="currentDomain" title="Active tab domain">—</div>
+  </header>
+
+  <!-- ═══ QUICK ACTIONS BAR ═══ -->
+  <nav id="quickActions" class="quick-actions">
+    <button id="btnRefresh" class="qa-btn" title="Refresh page">⟳</button>
+    <button id="btnClearCookies" class="qa-btn" title="Clear all cookies">🍪✕</button>
+    <button id="btnClearLocal" class="qa-btn" title="Clear localStorage">L✕</button>
+    <button id="btnClearSession" class="qa-btn" title="Clear sessionStorage">S✕</button>
+    <button id="btnAddEntry" class="qa-btn qa-btn--accent" title="Add new entry">＋</button>
+  </nav>
+
+  <!-- ═══ TAB BAR ═══ -->
+  <div id="tabBar" class="tab-bar">
+    <button class="tab active" data-tab="cookies">
+      <span class="tab-label">Cookies</span>
+      <span class="tab-count" id="cookieCount">0</span>
+    </button>
+    <button class="tab" data-tab="local">
+      <span class="tab-label">Local</span>
+      <span class="tab-count" id="localCount">0</span>
+    </button>
+    <button class="tab" data-tab="session">
+      <span class="tab-label">Session</span>
+      <span class="tab-count" id="sessionCount">0</span>
+    </button>
+  </div>
+
+  <!-- ═══ ADD ENTRY FORM ═══ -->
+  <div id="addForm" class="add-form hidden">
+    <div class="add-form-header">
+      <span>Add Entry</span>
+      <button id="addFormClose" class="add-form-close">✕</button>
+    </div>
+
+    <!-- Cookie fields -->
+    <div id="addCookieFields" class="add-fields">
+      <input type="text" id="addCookieName" placeholder="Name" class="add-input" spellcheck="false">
+      <input type="text" id="addCookieValue" placeholder="Value" class="add-input" spellcheck="false">
+      <input type="text" id="addCookieDomain" placeholder="Domain (e.g. .example.com)" class="add-input" spellcheck="false">
+      <input type="text" id="addCookiePath" placeholder="Path (default: /)" class="add-input" spellcheck="false">
+      <div class="add-row">
+        <label class="add-checkbox"><input type="checkbox" id="addCookieSecure"> Secure</label>
+        <label class="add-checkbox"><input type="checkbox" id="addCookieHttpOnly"> HttpOnly</label>
+        <select id="addCookieSameSite" class="add-select">
+          <option value="lax">Lax</option>
+          <option value="strict">Strict</option>
+          <option value="no_restriction">None</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Storage fields -->
+    <div id="addStorageFields" class="add-fields hidden">
+      <input type="text" id="addStorageKey" placeholder="Key" class="add-input" spellcheck="false">
+      <textarea id="addStorageValue" placeholder="Value" class="add-textarea" spellcheck="false"></textarea>
+    </div>
+
+    <button id="addFormSubmit" class="add-submit">Add</button>
+  </div>
+
+  <!-- ═══ CONTENT PANELS ═══ -->
+  <main id="contentArea" class="content-area">
+
+    <!-- STATUS BAR -->
+    <div id="statusBar" class="status-bar hidden">
+      <span id="statusMessage"></span>
+    </div>
+
+    <!-- COOKIES PANEL -->
+    <div id="panelCookies" class="panel active">
+      <div id="cookieList" class="entry-list"></div>
+      <div id="cookieEmpty" class="empty-state">No cookies found</div>
+    </div>
+
+    <!-- LOCAL STORAGE PANEL -->
+    <div id="panelLocal" class="panel">
+      <div id="localList" class="entry-list"></div>
+      <div id="localEmpty" class="empty-state">No localStorage entries</div>
+    </div>
+
+    <!-- SESSION STORAGE PANEL -->
+    <div id="panelSession" class="panel">
+      <div id="sessionList" class="entry-list"></div>
+      <div id="sessionEmpty" class="empty-state">No sessionStorage entries</div>
+    </div>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer id="footer" class="footer">
+    <span class="footer-text">offline · no tracking · local only</span>
+    <span class="footer-author">@rot-ig</span>
+  </footer>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script src="predict.js"></script>
+  <script src="cookie-manager.js"></script>
+  <script src="storage-manager.js"></script>
+  <script src="popup.js"></script>
+
+</body>
+</html>
