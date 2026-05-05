@@ -9,9 +9,9 @@ Built for developers, cybersecurity professionals, and debugging workflows.
 ## 👤 Author
 
 **@rot-ig**
-🔗 LinkedIn: https://www.linkedin.com/in/ishant-g/
-✍️ Medium: https://rot-ig.medium.com
-🌐 IxEdge Forge: https://ixedgeforge.in
+- 🔗 LinkedIn: https://www.linkedin.com/in/ishant-g/
+- ✍️ Medium: https://rot-ig.medium.com
+- 🌐 IxEdge Forge: https://ixedgeforge.in
 
 ---
 
